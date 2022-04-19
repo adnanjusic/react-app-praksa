@@ -1,3 +1,4 @@
+import authHeader from './auth-header.js'
 const API_URL = "https://reqres.in/api/";
 
 class RestService {
@@ -12,7 +13,8 @@ class RestService {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': authHeader()
                 },
             body: JSON.stringify(body)
       });

@@ -8,6 +8,7 @@ import { Home } from './pages/Home';
 import Login from './pages/Login';
 import UserDetails from './components/UserDetails';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
   return (
@@ -16,11 +17,11 @@ function App() {
             <Routes>
                  <Route path="/login" element={<Login></Login>}></Route>
                  <Route path="/" element={<Layout></Layout>}>
-                      <Route exact path="/" element={<Home></Home>}></Route>
-                      <Route exact path="/home" element={<Home></Home>}></Route>
-                      <Route exact path="/users" element={<UserList></UserList>}></Route>
-                      <Route exact path="/users/details/:id" element={<UserDetails></UserDetails>}></Route>
-                      <Route exact path="/about" element={<About></About>}></Route>
+                      <Route exact path="/" element={<PrivateRoute><Home></Home></PrivateRoute>}></Route>
+                      <Route exact path="/home" element={<PrivateRoute><Home></Home></PrivateRoute>}></Route>
+                      <Route exact path="/users" element={<PrivateRoute><UserList></UserList></PrivateRoute>}></Route>
+                      <Route exact path="/users/details/:id" element={<PrivateRoute><UserDetails></UserDetails></PrivateRoute>}></Route>
+                      <Route exact path="/about" element={<PrivateRoute><About></About></PrivateRoute>}></Route>
                       <Route exact path="*" element={<NotFound></NotFound>}></Route>
                  </Route>
             </Routes>
@@ -28,5 +29,7 @@ function App() {
     </BrowserRouter>  
   );
 }
+
+
 
 export default App;
