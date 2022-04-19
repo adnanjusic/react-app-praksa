@@ -4,7 +4,7 @@ export class NotFound extends React.Component {
     render() {
         return (
             <>
-                <h4>404 - Not found</h4>
+                <h4>404 Not found</h4>
             </>
         )
     }

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 export class UserList extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = { users: [] };
     }
 
@@ -19,17 +18,32 @@ export class UserList extends React.Component {
             <React.Fragment>
                 <h1>Users List</h1>
                 <h3>List of users</h3>
-                <ul>
-                    {this.state.users.map((user, index) => {
+                <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {this.state.users.map((user, index) => {
                         return (
                             <>
-                            <li key={user.id}>{user.first_name} {user.last_name}</li><br/>
-                                <Link to={"/users/details/" + user.id}>Details</Link>
-                                <button onClick={() => this.removeUser(index)}>Remove</button>
+                            <tr>
+                                <td>{user.first_name}</td>
+                                <td>{user.last_name}</td>
+                                <td>    
+                                    <Link to={"/users/details/" + user.id}>Details</Link>
+                                    <button onClick={() => this.removeUser(index)}>Remove</button>
+                                </td>
+                            </tr>
                             </>
                         )
                     })}
-                </ul>             
+                
+                </tbody>
+                </table>           
                 <br/>
                 <button onClick={() => this.addUser()}>Add user</button>
             </React.Fragment>

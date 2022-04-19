@@ -1,10 +1,10 @@
 import React from "react";
 
-export class About extends React.Component {
+export class Home extends React.Component {
     render() {
         return (
             <>
-                <h4 className="">About us...</h4>
+                <h4 className="">Home</h4>
             </>
         )
     }
