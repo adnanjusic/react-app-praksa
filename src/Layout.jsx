@@ -3,8 +3,9 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import AuthService  from './services/auth-service.js'
+import { observer } from "mobx-react";
 
-const Layout = () => {
+const Layout = (props) => {
         const navigate = useNavigate();
         const [expanded, setExpanded] = useState(true);
         const currentUser = AuthService.getCurrentUser();
@@ -35,6 +36,8 @@ const Layout = () => {
                 <SideNav.Toggle />
                 <SideNav.Nav defaultSelected="home">
                      {currentUser && (<h6>{currentUser.email}</h6>)}
+                     
+                     {props.store.notificationsCount > 0 && (<>Notifications: {props.store.notificationsCount}</>)}
                     <NavItem eventKey="home">
                         <NavIcon>
                             <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
@@ -81,4 +84,4 @@ const Layout = () => {
         );    
 }
 
-export default Layout;
+export default observer(Layout);
