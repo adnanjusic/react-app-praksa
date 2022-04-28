@@ -9,19 +9,21 @@ import Login from './pages/Login';
 import UserDetails from './components/UserDetails';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import PrivateRoute from './utils/PrivateRoute';
+import { NotificationStore } from './stores/NotificationStore';
 
 function App() {
+  const notificationStore = new NotificationStore();
   return (
     <BrowserRouter>
       <div className="App">
             <Routes>
                  <Route path="/login" element={<Login></Login>}></Route>
-                 <Route path="/" element={<Layout></Layout>}>
+                 <Route path="/" element={<Layout store={notificationStore}></Layout>}>
                       <Route exact path="/" element={<PrivateRoute><Home></Home></PrivateRoute>}></Route>
                       <Route exact path="/home" element={<PrivateRoute><Home></Home></PrivateRoute>}></Route>
                       <Route exact path="/users" element={<PrivateRoute><UserList></UserList></PrivateRoute>}></Route>
                       <Route exact path="/users/details/:id" element={<PrivateRoute><UserDetails></UserDetails></PrivateRoute>}></Route>
-                      <Route exact path="/about" element={<PrivateRoute><About></About></PrivateRoute>}></Route>
+                      <Route exact path="/about" element={<PrivateRoute><About  store={notificationStore}></About></PrivateRoute>}></Route>
                       <Route exact path="*" element={<NotFound></NotFound>}></Route>
                  </Route>
             </Routes>
