@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import UsersService from '../services/users-service'
 
 export class UserList extends React.Component {
     constructor(props) {
@@ -8,9 +9,9 @@ export class UserList extends React.Component {
     }
 
     async componentDidMount() {
-        var response = await fetch("https://reqres.in/api/users?page=2");
-        var jsonObj = await response.json();
-        this.setState({users: jsonObj.data});
+        debugger;
+        var data = await UsersService.getAll();
+        this.setState({users: data});
     }
 
     render() {

@@ -3,7 +3,11 @@ const API_URL = "https://reqres.in/api/";
 
 class RestService {
     async get(method) {
-        const response = await fetch(API_URL + method);   
+        const response = await fetch(API_URL + method, {
+            headers: {
+                'Authorization': authHeader()
+            },
+        });   
         const jsonObj = await response.json();
         return jsonObj;     
     }

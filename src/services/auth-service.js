@@ -1,8 +1,8 @@
-import RestService  from '../services/rest-service.js'
+import api  from '../services/rest-service.js'
 
 class AuthService {
     async login(email, password) {
-        const data = await RestService.post("login", {email, password});
+        const data = await api.post("login", {email, password});
     
         if (data.token) {
             localStorage.setItem("user", JSON.stringify({email: email}));

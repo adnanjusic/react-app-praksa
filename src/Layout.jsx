@@ -10,6 +10,7 @@ const Layout = () => {
         const currentUser = AuthService.getCurrentUser();
 
         function onMenuItemClicked(selected) {
+            debugger;
             const to = '/' + selected;
             if(selected === 'logout')
             {
